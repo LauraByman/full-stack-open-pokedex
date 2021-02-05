@@ -41,7 +41,7 @@ jobs:
             checkstring: "ok"
             rollbackonhealthcheckfailed: true
         - name: Bump version and push tag
-          if: ${{github.event_name == 'push'}} && "!contains(github.event.head_commit.message, '#skip')
+          if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
           uses: anothrNick/github-tag-action@1.33.0
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -56,7 +56,7 @@ jobs:
             SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
         - name: notify slack if success
           uses: 8398a7/action-slack@v3
-          if: ${{ success() }} && ${{github.event_name == 'push'}}
+          if: ${{ success()  && github.event_name == 'push'}}
           with:
             status: custom
             custom_payload: |
