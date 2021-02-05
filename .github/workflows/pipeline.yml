@@ -44,7 +44,7 @@ jobs:
           uses: anothrNick/github-tag-action@1.33.0
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            DEFAULT_BUMP: minor
+            DEFAULT_BUMP: patch
         # - name: notify slack if failure
         #   uses: 8398a7/action-slack@v3
         #   if: ${{ failure() }}
