@@ -34,9 +34,9 @@ jobs:
           uses: akhileshns/heroku-deploy@v3.9.9 # This is the action
           with:
             heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-            heroku_app_name: "mypokedex3456" #Must be unique in Heroku
+            heroku_app_name: "mypokedex-3456" #Must be unique in Heroku
             heroku_email: "laura.a.byman@gmail.com"
-            healthcheck: "https://mypokedex3456.herokuapp.com/health"
+            healthcheck: "https://mypokedex-3456.herokuapp.com/health"
             checkstring: "ok"
             rollbackonhealthcheckfailed: true
         - name: Bump version and push tag
@@ -62,7 +62,7 @@ jobs:
             custom_payload: |
               {
                 attachments: [{
-                  text: `a new version deployed to https://mypokedex3456.herokuapp.com (${process.env.AS_COMMIT})
+                  text: `a new version deployed to https://mypokedex-3456.herokuapp.com (${process.env.AS_COMMIT})
                   by ${process.env.AS_AUTHOR}, build took ${process.env.AS_TOOK}`,
                 }]
               }
